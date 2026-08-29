@@ -1,71 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
+<!--
+  Штаб AI-команды · Boost Pro. Растёт от воркшопа к воркшопу:
+  Воркшоп 1 — пустой штаб + название проекта (этот файл).
+  Воркшопы 2–5 — добавляют сотрудников: в .stage кладётся ещё один слой
+          <img class="layer" src="overlay_XXX.png" alt="...">, и картинка overlay_XXX.png
+          рядом с этим файлом. Холст один и тот же (1376×768), слои позиционируются
+          inset:0 — сотрудник сам встаёт на своё место.
+-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Следопыт</title>
+<title>Мой штаб AI-команды · Boost Pro</title>
 <style>
-  :root {
-    --paper: #FAFAF7;
-    --ink: #16181C;
-    --ink-soft: #545A63;
-    --rule: #E4E3DC;
-    --amber: #9A6708;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #101216;
-      --ink: #ECEBE5;
-      --ink-soft: #A6ACB5;
-      --rule: #2B2F37;
-      --amber: #EFB330;
-    }
-  }
-  * { box-sizing: border-box; }
+  :root { --ink: #1c1c1c; --beige: #EFC894; }
+  * { box-sizing: border-box; margin: 0; }
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #faf8f4; color: var(--ink);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 16px; padding: 32px 16px; min-height: 100vh;
   }
-  main { max-width: 32rem; }
-  .eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin: 0 0 0.8rem;
+  h1 { font-size: 22px; font-weight: 700; text-align: center; }
+  .sub { font-size: 15px; color: #555; max-width: 640px; text-align: center; }
+  .stage {
+    position: relative; width: min(1100px, 96vw);
+    aspect-ratio: 1376 / 768;
+    border: 2px solid var(--ink); border-radius: 12px;
+    overflow: hidden; background: #fff;
+    box-shadow: 0 6px 24px rgba(0,0,0,.08);
   }
-  h1 {
-    font-size: clamp(2rem, 6vw, 2.8rem);
-    line-height: 1.15;
-    margin: 0 0 1rem;
-    letter-spacing: -0.02em;
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage img.layer { opacity: 0; transition: opacity .45s ease; }
+  .stage img.layer.on { opacity: 1; }
+  /* Вывеска с названием проекта — прямо на изображении штаба */
+  .nameplate {
+    position: absolute; top: 5%; left: 50%; transform: translateX(-50%);
+    max-width: 82%;
+    padding: 7px 22px;
+    background: var(--beige); color: var(--ink);
+    border: 2px solid var(--ink); border-radius: 999px;
+    font-weight: 700; font-size: clamp(14px, 2.3vw, 26px); line-height: 1.15;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;
+    box-shadow: 0 3px 0 var(--ink);
   }
-  p { color: var(--ink-soft); margin: 0 0 1rem; }
-  p:last-child { margin-bottom: 0; }
-  hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
-  .meta { font-size: 0.85rem; color: var(--ink-soft); }
+  .foot { font-size: 13px; color: #999; }
+  .foot a { color: #555; font-weight: 600; text-decoration: none; border-bottom: 1px solid #bbb; }
+  .foot a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 </style>
 </head>
 <body>
-<main>
-  <p class="eyebrow">В разработке</p>
-  <h1>Следопыт</h1>
-  <p>Сопровождение семьи в освоении видеоувеличителя. Проект некоммерческой
-     организации «Чтобы Видеть!».</p>
-  <p>Сейчас здесь заглушка — страница появится, когда будет готов генератор
-     заданий.</p>
-  <hr>
-  <p class="meta">Учебный проект. Персональные данные не собираются.</p>
-</main>
+  <h1>Мой штаб AI-команды</h1>
+  <p class="sub">Рабочее место готово — столы ждут AI-сотрудников. Команду будешь собирать воркшоп за воркшопом.</p>
+
+  <div class="stage">
+    <img src="hq_slots.jpg" alt="Штаб: четыре пустых рабочих места">
+    <!-- Название проекта. Публикация: пуш в sledopyt-site → сервер забирает раз в минуту. -->
+    <div class="nameplate" id="nameplate">Следопыт</div>
+    <!-- ↓ Воркшопы 2–5 добавляют сюда слои сотрудников:
+         <img class="layer on" src="overlay_admin.png" alt="AI-администратор"> -->
+  </div>
+
+  <p class="foot"><a href="https://boost-intensive.ru/pro?utm_source=student-hq&utm_medium=referral&utm_campaign=boost_pro" target="_blank" rel="noopener">Boost Pro</a> · «Собери свою AI-команду»</p>
+
+<script>
+  // Подстраховка: если название проекта не подставили — покажем нейтральное.
+  const np = document.getElementById("nameplate");
+  if (!np.textContent.trim() || np.textContent.includes("{{")) np.textContent = "Мой проект";
+</script>
 </body>
 </html>
