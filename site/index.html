@@ -32,6 +32,8 @@
     box-shadow: 0 6px 24px rgba(0,0,0,.08);
   }
   .stage img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* Дорисованные поверх картинки предметы — рисуются линиями, а не файлом */
+  .stage svg.draw { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .stage img.layer { opacity: 0; transition: opacity .45s ease; }
   .stage img.layer.on { opacity: 1; }
   /* Вывеска с названием проекта — прямо на изображении штаба */
@@ -56,6 +58,20 @@
 
   <div class="stage">
     <img src="hq_slots.jpg" alt="Штаб: четыре пустых рабочих места">
+
+    <!-- Видеоувеличитель на правом столе. Нарисован линиями поверх картинки:
+         координаты в системе исходного изображения 1376×768. -->
+    <svg class="draw" viewBox="0 0 1376 768" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="#fff" stroke="#1c1c1c" stroke-width="4"
+         stroke-linejoin="round" stroke-linecap="round">
+        <path d="M1020 392 L1148 392 L1136 376 L1008 376 Z"/>
+        <path d="M1044 376 L1112 376 L1104 366 L1036 366 Z" fill="#EFC894"/>
+        <path d="M1072 376 L1086 376 L1086 320 L1072 320 Z"/>
+        <rect x="1014" y="266" width="130" height="58" rx="6"/>
+        <path d="M1030 286 H1128 M1030 298 H1104 M1030 310 H1120"
+              fill="none" stroke-width="3"/>
+      </g>
+    </svg>
     <!-- Название проекта. Публикация: bash publish.sh → сервер забирает раз в минуту. -->
     <div class="nameplate" id="nameplate">Следопыт</div>
     <!-- ↓ Воркшопы 2–5 добавляют сюда слои сотрудников:
