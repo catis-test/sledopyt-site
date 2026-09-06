@@ -40,6 +40,14 @@ server {
     # в логи не пишем адреса посетителей
     access_log off;
 
+    # Пульт (админский дашборд): своя программа на 127.0.0.1:8000 —
+    # тот же процесс, что и API бота (см. project/dashboard/). Пароль
+    # и вся логика внутри неё, nginx только передаёт запрос дальше.
+    location /dashboard {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host \$host;
+    }
+
     location / {
         try_files \$uri \$uri/ =404;
     }
